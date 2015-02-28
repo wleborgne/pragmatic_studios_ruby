@@ -5,30 +5,54 @@ class Player
   attr_accessor :name
 
   def initialize(name, health = 100)
-    @name = name.capitalize
+    @title = name.capitalize
     @health = health
   end
 
   def name=(new_name)
-    @name = new_name.capitalize
+    @title = new_name.capitalize
   end
 
   def to_s
-    "I'm #{@name} with a health of #{@health} and a score of #{score}."
+    "I'm #{@title} with a health of #{@health} and a score of #{score}."
   end
 
   def score
-    @health + @name.length
+    @health + @title.length
   end
 
   def blam
     @health -= 10
-    puts "#{@name} got blammed!"
+    puts "#{@title} got blammed!"
   end
 
   def w00t
     @health += 15
-    puts "#{@name} got w00ted!"
+    puts "#{@title} got w00ted!"
+  end
+end
+
+class Game
+  attr_reader :title
+
+  def initialize(title)
+    @title = title
+    @players = []
+  end
+
+  def add_player(player)
+    @players << player
+  end
+
+  def play
+    puts "There are #{@players.length} players in #{@title}"
+    @players.each { |player| puts player }
+    @players.each do |player|
+      player.blam
+      player.w00t
+      player.w00t
+      puts player
+    end
   end
 end
 
@@ -36,19 +60,18 @@ player1 = Player.new('moe')
 player2 = Player.new('larry', 60)
 player3 = Player.new('curly', 125)
 
-players = [player1, player2, player3]
+knuckleheads = Game.new('Knuckleheads')
+knuckleheads.add_player(player1)
+knuckleheads.add_player(player2)
+knuckleheads.add_player(player3)
+knuckleheads.play
 
-puts "There are #{players.length} players in the game."
-players.each do |player|
-  player.blam
-  player.w00t
-  player.w00t
-  puts player
-end
+player4 = Player.new('Alvin', 100)
+player5 = Player.new('Simon', 60)
+player6 = Player.new('Theo', 125)
 
-players.pop
-player4 = Player.new('shemp', 90)
-players.push(player4)
-
-puts 'New roster:'
-players.each { |player| puts player }
+chipmunks = Game.new('Chipmunks')
+chipmunks.add_player(player4)
+chipmunks.add_player(player5)
+chipmunks.add_player(player6)
+chipmunks.play
