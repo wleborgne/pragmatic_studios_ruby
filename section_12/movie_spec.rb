@@ -4,7 +4,6 @@ describe Movie do
   before(:each) do
     @initial_rank = 10
     @movie = Movie.new('goonies', @initial_rank)
-
   end
   it 'has a capitalized title' do
     expect(@movie.title).to eq('Goonies')
@@ -27,12 +26,12 @@ describe Movie do
     @movie.thumbs_down
     expect(@movie.rank).to eq(@initial_rank - 1)
   end
-  
+
   context 'created with a default rank' do
     before(:each) do
       @movie = Movie.new('goonies')
     end
-    
+
     it 'has a rank of 0' do
       expect(@movie.rank).to eq(0)
     end
