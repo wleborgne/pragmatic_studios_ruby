@@ -1,6 +1,10 @@
 require_relative './movie.rb'
 
 describe Movie do
+  before(:all) do
+    $stdout = StringIO.new
+  end
+
   before(:each) do
     @initial_rank = 10
     @movie = Movie.new('goonies', @initial_rank)
@@ -37,7 +41,7 @@ describe Movie do
     end
   end
 
-  context 'movie with a rank of at least 10' do
+  context 'with a rank of at least 10' do
     before(:each) do
       @movie = Movie.new('goonies', 10)
     end
@@ -51,7 +55,7 @@ describe Movie do
     end
   end
 
-  context 'movie with a rank less than 10' do
+  context 'with a rank less than 10' do
     before(:each) do
       @movie = Movie.new('goonies', 9)
     end
@@ -59,7 +63,7 @@ describe Movie do
     it 'is not a hit' do
       expect(@movie.hit?).to eq(false)
     end
-    
+
     it 'has a flop status' do
       expect(@movie.status).to eq('Flop')
     end
