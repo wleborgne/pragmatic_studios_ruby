@@ -40,4 +40,27 @@ describe Player do
     @player.blam
     expect(@player.health).to eq(@initial_health - 10)
   end
+
+  context 'with a health of 150' do
+    before(:each) do
+      @initial_health = 150
+      @player = Player.new('strongbad', @initial_health)
+    end
+
+    it 'is strong' do
+      # equivalent to expect(@player.strong?).to be(true)
+      expect(@player).to be_strong
+    end
+  end
+
+  context 'with a health of 100' do
+    before(:each) do
+      @initial_health = 100
+      @player = Player.new('wimpy', @initial_health)
+    end
+
+    it 'is not strong' do
+      expect(@player).to_not be_strong
+    end
+  end
 end
