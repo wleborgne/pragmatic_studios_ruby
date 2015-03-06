@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require_relative './player.rb'
-require_relative './Die'
+require_relative './game_turn.rb'
 
 # Implement Game class
 class Game
@@ -20,16 +20,7 @@ class Game
     puts "There are #{@players.length} players in #{@title}"
     @players.each { |player| puts player }
     @players.each do |player|
-      die = Die.new
-      number_rolled = die.roll
-      case number_rolled
-      when (1..2)
-        player.blam
-      when (3..4)
-        puts "#{player.name} was skipped."
-      else
-        player.w00t
-      end
+      GameTurn.take_turn(player)
       puts player
     end
   end
