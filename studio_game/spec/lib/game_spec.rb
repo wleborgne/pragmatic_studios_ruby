@@ -1,6 +1,6 @@
 require 'rspec'
-require_relative './game.rb'
-require_relative './die.rb'
+require_relative '../../lib/game.rb'
+require_relative '../../lib/die.rb'
 
 describe Game do
   before(:all) do
