@@ -63,4 +63,15 @@ describe Player do
       expect(@player).to_not be_strong
     end
   end
+
+  context 'in a collection of players' do
+    let(:player1) { Player.new('more', 100) }
+    let(:player2) { Player.new('larry', 200) }
+    let(:player3) { Player.new('curly', 300) }
+    let(:players) { [player1, player2, player3] }
+
+    it 'is sorted by decreasing score' do
+      expect(players.sort).to eq([player3, player2, player1])
+    end
+  end
 end
