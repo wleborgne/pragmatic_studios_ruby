@@ -11,6 +11,9 @@ knuckleheads.add_player(player2)
 knuckleheads.add_player(player3)
 knuckleheads.play(3)
 
+knuckleheads.print_stats
+knuckleheads.print_scores
+
 # player4 = Player.new('Alvin', 100)
 # player5 = Player.new('Simon', 60)
 # player6 = Player.new('Theo', 125)
