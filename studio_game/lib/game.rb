@@ -15,14 +15,16 @@ class Game
     @players << player
   end
 
-  # rubocop:disable Metrics/MethodLength
-  def play
+  def play(rounds)
     puts "There are #{@players.length} players in #{@title}"
     @players.each { |player| puts player }
-    @players.each do |player|
-      GameTurn.take_turn(player)
-      puts player
+
+    1.upto(rounds) do |round|
+      puts "\nRound: #{round}"
+      @players.each do |player|
+        GameTurn.take_turn(player)
+        puts player
+      end
     end
   end
-  # rubocop:enable Metrics/MethodLength
 end
