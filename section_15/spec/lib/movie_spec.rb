@@ -68,4 +68,22 @@ describe Movie do
       expect(@movie.status).to eq('Flop')
     end
   end
+
+  context 'is sorted by rank from greater to lesser' do
+    let(:lower_ranked) { Movie.new('lower', 5) }
+    let(:higher_ranked) { Movie.new('higher', 9) }
+
+    it 'returns 1 if it\'s rank is lesser' do
+      expect(lower_ranked <=> higher_ranked).to eq(1)
+    end
+
+    it 'returns 0 if it\'s rank is equal' do
+      equals_lower = Movie.new('other lower', 5)
+      expect(lower_ranked <=> equals_lower).to eq(0)
+    end
+
+    it 'returns -1 if it\'s rank is greater' do
+      expect(higher_ranked <=> lower_ranked).to eq(-1)
+    end
+  end
 end
