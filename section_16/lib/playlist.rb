@@ -1,5 +1,6 @@
 require_relative './movie.rb'
 require_relative './waldorf_and_statler'
+require_relative './snack_bar'
 
 class Playlist
   attr_reader :title
@@ -17,10 +18,13 @@ class Playlist
     puts "#{@title}'s playlist:"
     puts @movies.sort
 
+    print_snack_menu
+
     1.upto(viewings) do |count|
       puts "\nViewings: #{count}"
       @movies.each do |movie|
         WaldorfAndStatler.review(movie)
+        puts "Had #{SnackBar.random.name} during #{movie.title}."
       end
     end
   end
@@ -35,5 +39,14 @@ class Playlist
 
     puts "\nFlops:"
     puts flops.sort
+  end
+
+  def print_snack_menu
+    snacks = SnackBar::SNACKS
+    puts "\nThere are #{snacks.size} snacks available: "
+
+    snacks.each do |snack|
+      puts "#{snack.name.capitalize} has #{snack.carbs}."
+    end
   end
 end
