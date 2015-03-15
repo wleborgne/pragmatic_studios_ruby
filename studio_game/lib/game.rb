@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require_relative './player.rb'
 require_relative './game_turn.rb'
+require_relative './treasure_trove'
 
 # Implement Game class
 class Game
@@ -18,6 +19,8 @@ class Game
   def play(rounds)
     puts "There are #{@players.length} players in #{@title}"
     @players.each { |player| puts player }
+
+    print_treasures
 
     1.upto(rounds) do |round|
       puts "\nRound: #{round}"
@@ -39,6 +42,14 @@ class Game
     puts "\n#{@title.capitalize} High Scores:"
     @players.sort.each do |player|
       puts "#{player.name.ljust(20, '.')} #{player.score}"
+    end
+  end
+
+  def print_treasures
+    treasures = TreasureTrove::TREASURES
+    puts "\nThere are #{treasures.count} treasures to be found:"
+    treasures.each do |treasure|
+      puts "A #{treasure.name} is worth #{treasure.points} points"
     end
   end
 
