@@ -47,4 +47,11 @@ describe TreasureTrove do
   it 'has a crowbar worth 400 points' do
     expect(trove[5]).to eq(Treasure.new(:crowbar, 400))
   end
+
+  context '#random' do
+    it 'returns a random treasure' do
+      treasure = TreasureTrove.random
+      expect(trove).to include(treasure)
+    end
+  end
 end

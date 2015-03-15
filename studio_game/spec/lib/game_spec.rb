@@ -64,4 +64,21 @@ Player (50)
       expect { game.print_stats }.to output(expected_output).to_stdout
     end
   end
+
+  context '#print_treasures' do
+    it 'will print the list of treasures with their point values' do
+      game = Game.new('EmptyGame')
+      expected_output = <<-END
+
+There are 6 treasures to be found:
+A pie is worth 5 points
+A bottle is worth 25 points
+A hammer is worth 50 points
+A skillet is worth 100 points
+A broomstick is worth 200 points
+A crowbar is worth 400 points
+      END
+      expect { game.print_treasures }.to output(expected_output).to_stdout
+    end
+  end
 end

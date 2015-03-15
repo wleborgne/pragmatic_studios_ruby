@@ -7,4 +7,8 @@ module TreasureTrove
                Treasure.new(:skillet, 100),
                Treasure.new(:broomstick, 200),
                Treasure.new(:crowbar, 400)]
+
+  def self.random
+    TREASURES.sample
+  end
 end
