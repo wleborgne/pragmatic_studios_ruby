@@ -7,10 +7,7 @@ module GameTurn
     die = Die.new
     number_rolled = die.roll
     player_action(number_rolled, player)
-
-    treasure = TreasureTrove.random
-    puts "#{player.name} found a #{treasure.name}\
- worth #{treasure.points} points."
+    player.found_treasure(TreasureTrove.random)
   end
 
   def self.player_action(number_rolled, player)

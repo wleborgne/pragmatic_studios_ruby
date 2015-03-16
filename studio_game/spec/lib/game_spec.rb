@@ -33,6 +33,11 @@ describe Game do
       @game.play(2)
       expect(@player.health).to eq(@initial_health - 10 * 2)
     end
+
+    it 'assigns a treasure for points during a player\'s turn' do
+      @game.play(1)
+      expect(@player.points).not_to be_zero
+    end
   end
 
   context '#print_stats' do
@@ -43,7 +48,8 @@ describe Game do
       expected_output = <<-END
 
 1 strong players:
-Player (150)
+Player's point totals:
+0 grand total points
 
 0 wimpy players:
       END
@@ -59,7 +65,8 @@ Player (150)
 0 strong players:
 
 1 wimpy players:
-Player (50)
+Player's point totals:
+0 grand total points
       END
       expect { game.print_stats }.to output(expected_output).to_stdout
     end

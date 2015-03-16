@@ -1,4 +1,5 @@
 require_relative '../../lib/player.rb'
+require_relative '../../lib/treasure_trove'
 
 describe Player do
   before(:all) do
@@ -21,14 +22,16 @@ describe Player do
   end
 
   it 'has a string representation' do
-    # A bit of a hack to keep rubocop happy about line lengths
-    expected_string = 'I\'m Larry with a health of 150 and a score of 155.'
-    expect(@player.to_s).to eq(expected_string)
+    @player.found_treasure(Treasure.new(:hammer, 50))
+    @player.found_treasure(Treasure.new(:hammer, 50))
+    exp_string = 'I\'m Larry with health = 150, points = 100, and score = 250.'
+    expect(@player.to_s).to eq(exp_string)
   end
 
   it 'computes a score as the sum of its health and length of name' do
-    expected_score = @initial_health + @name.length
-    expect(@player.score).to eq(expected_score)
+    @player.found_treasure(Treasure.new(:hammer, 50))
+    @player.found_treasure(Treasure.new(:hammer, 50))
+    expect(@player.score).to eq(250)
   end
 
   it 'increases health by 15 when w00ted' do
@@ -51,6 +54,16 @@ describe Player do
       # equivalent to expect(@player.strong?).to be(true)
       expect(@player).to be_strong
     end
+  end
+
+  it 'computes points as the sum of all treasure points' do
+    expect(@player.points).to eq(0)
+    @player.found_treasure(Treasure.new(:hammer, 50))
+    expect(@player.points).to eq(50)
+    @player.found_treasure(Treasure.new(:crowbar, 400))
+    expect(@player.points).to eq(450)
+    @player.found_treasure(Treasure.new(:hammer, 50))
+    expect(@player.points).to eq(500)
   end
 
   context 'with a health of 100' do
