@@ -53,10 +53,17 @@ class Game
     end
   end
 
+  def total_points
+    @players.reduce(0) { |a, e| a + e.points }
+  end
+
   private
 
   def print_a_stat(players, kind)
     puts "\n#{players.length} #{kind} players:"
-    players.each { |player| puts "#{player.name} (#{player.health})" }
+    players.each do |player|
+      puts "#{player.name}'s point totals:"
+      puts "#{player.points} grand total points"
+    end
   end
 end
