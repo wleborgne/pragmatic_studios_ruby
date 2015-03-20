@@ -88,4 +88,22 @@ A crowbar is worth 400 points
       expect { game.print_treasures }.to output(expected_output).to_stdout
     end
   end
+
+  context '#total_points' do
+    it 'returns total points of all treasures found' do
+      game = Game.new('knuckleheads')
+
+      player1 = Player.new('moe')
+      player2 = Player.new('larry')
+
+      game.add_player(player1)
+      game.add_player(player2)
+
+      player1.found_treasure(Treasure.new(:hammer, 50))
+      player1.found_treasure(Treasure.new(:hammer, 50))
+      player2.found_treasure(Treasure.new(:crowbar, 400))
+
+      expect(game.total_points).to eq(500)
+    end
+  end
 end

@@ -39,11 +39,9 @@ class Playlist
     print_hits_flops
   end
 
-  # rubocop: disable Lint/UselessAssignment
   def total_carbs
-    @movies.reduce(0) { |a, e| a += e.carbs_consumed }
+    @movies.reduce(0) { |a, e| a + e.carbs_consumed }
   end
-  # rubocop: enable Lint/UselessAssignment
 
   def print_hits_flops
     hits, flops = @movies.partition(&:hit?)

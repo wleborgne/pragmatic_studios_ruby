@@ -53,6 +53,10 @@ class Game
     end
   end
 
+  def total_points
+    @players.reduce(0) { |a, e| a + e.points }
+  end
+
   private
 
   def print_a_stat(players, kind)
