@@ -66,6 +66,27 @@ describe Player do
     expect(@player.points).to eq(500)
   end
 
+  it 'yields each found treasure and it total points' do
+    @player.found_treasure(Treasure.new(:skillet, 100))
+    @player.found_treasure(Treasure.new(:skillet, 100))
+    @player.found_treasure(Treasure.new(:hammer, 50))
+    @player.found_treasure(Treasure.new(:bottle, 5))
+    @player.found_treasure(Treasure.new(:bottle, 5))
+    @player.found_treasure(Treasure.new(:bottle, 5))
+    @player.found_treasure(Treasure.new(:bottle, 5))
+    @player.found_treasure(Treasure.new(:bottle, 5))
+    expected_array = [Treasure.new(:skillet, 200),
+                      Treasure.new(:hammer, 50),
+                      Treasure.new(:bottle, 25)]
+
+    yielded = []
+    @player.each_found_treasure do |treasure|
+      yielded << treasure
+    end
+
+    expect(yielded).to contain_exactly(*expected_array)
+  end
+
   context 'with a health of 100' do
     before(:each) do
       @initial_health = 100
