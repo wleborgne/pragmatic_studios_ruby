@@ -56,6 +56,9 @@ class Playlist
   def print_carbs
     @movies.sort.each do |movie|
       puts "\n#{movie.title} snack totals:"
+      movie.each_snack do |snack|
+        puts "#{snack.carbs} total #{snack.name} carbs"
+      end
       puts "#{movie.carbs_consumed} carbs"
     end
   end
