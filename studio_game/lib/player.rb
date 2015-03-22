@@ -31,6 +31,13 @@ class Player
     puts "#{@name}'s treasures: #{@found_treasures}"
   end
 
+  def each_found_treasure
+    @found_treasures.each do |name, points|
+      treasure = Treasure.new(name, points)
+      yield treasure
+    end
+  end
+
   def points
     @found_treasures.values.reduce(0, :+)
   end

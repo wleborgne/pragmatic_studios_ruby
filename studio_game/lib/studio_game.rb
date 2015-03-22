@@ -14,12 +14,17 @@ knuckleheads.play(3)
 knuckleheads.print_stats
 knuckleheads.print_scores
 
-# player4 = Player.new('Alvin', 100)
-# player5 = Player.new('Simon', 60)
-# player6 = Player.new('Theo', 125)
-#
-# chipmunks = Game.new('Chipmunks')
-# chipmunks.add_player(player4)
-# chipmunks.add_player(player5)
-# chipmunks.add_player(player6)
-# chipmunks.play
+player4 = Player.new('Alvin', 100)
+player5 = Player.new('Simon', 60)
+player6 = Player.new('Theo', 125)
+
+chipmunks = Game.new('Chipmunks')
+chipmunks.add_player(player4)
+chipmunks.add_player(player5)
+chipmunks.add_player(player6)
+chipmunks.play(10) do
+  chipmunks.total_points >= 2000
+end
+
+chipmunks.print_stats
+chipmunks.print_scores

@@ -23,10 +23,12 @@ class Game
     print_treasures
 
     1.upto(rounds) do |round|
+      break if block_given? && yield
+
       puts "\nRound: #{round}"
       @players.each do |player|
         GameTurn.take_turn(player)
-        puts player
+        # puts player
       end
     end
   end
@@ -63,6 +65,9 @@ class Game
     puts "\n#{players.length} #{kind} players:"
     players.each do |player|
       puts "#{player.name}'s point totals:"
+      player.each_found_treasure do |treasure|
+        puts "#{treasure.points} total #{treasure.name} points"
+      end
       puts "#{player.points} grand total points"
     end
   end
