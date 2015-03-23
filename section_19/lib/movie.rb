@@ -16,6 +16,14 @@ class Movie
     "#{@title} has a rank of #{@rank} (#{status})"
   end
 
+  def self.from_csv(line)
+    title, rank = line.split(',')
+    Movie.new(title, Integer(rank))
+  end
+  def to_csv
+    "#{@title},#{@rank}"
+  end
+
   def ate_snack(snack)
     @snack_carbs[snack.name] += snack.carbs
     puts "#{@title} led to #{snack.carbs} #{snack.name} carbs eaten."
