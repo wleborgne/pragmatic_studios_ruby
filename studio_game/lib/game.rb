@@ -16,6 +16,12 @@ class Game
     @players << player
   end
 
+  def load_players(file = 'players.csv')
+    File.readlines(file).each do |line|
+      add_player(Player.from_csv(line))
+    end
+  end
+
   def play(rounds)
     puts "There are #{@players.length} players in #{@title}"
     @players.each { |player| puts player }
@@ -41,10 +47,7 @@ class Game
   end
 
   def print_scores
-    puts "\n#{@title.capitalize} High Scores:"
-    @players.sort.each do |player|
-      puts "#{player.name.ljust(20, '.')} #{player.score}"
-    end
+    score_table.each { |line| puts line }
   end
 
   def print_treasures
@@ -59,7 +62,22 @@ class Game
     @players.reduce(0) { |a, e| a + e.points }
   end
 
+  def save_high_scores(to_file = 'high_scores.txt')
+    File.open(to_file, 'w') do |file|
+      score_table.each { |line| file.puts line }
+    end
+  end
+
   private
+
+  def score_table
+    table = []
+    table << "\n#{@title.capitalize} High Scores:"
+    @players.sort.each do |player|
+      table << "#{player.name.ljust(20, '.')} #{player.score}"
+    end
+    table
+  end
 
   def print_a_stat(players, kind)
     puts "\n#{players.length} #{kind} players:"
