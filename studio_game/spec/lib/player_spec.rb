@@ -13,6 +13,12 @@ describe Player do
     @player = Player.new(@name, @initial_health)
   end
 
+  it 'can be created from csv' do
+    player = Player.from_csv('moe,100')
+    expect(player.name).to eq('Moe')
+    expect(player.health).to eq(100)
+  end
+
   it 'has a capitalized name' do
     expect(@player.name).to eq(@name.capitalize)
   end
