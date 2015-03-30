@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require_relative './movie.rb'
+require_relative './movie3d.rb'
 require_relative './playlist.rb'
 
 # movie1 = Movie.new('goonies', 10)
@@ -8,6 +9,10 @@ require_relative './playlist.rb'
 
 playlist1 = Playlist.new('Kermit')
 playlist1.load(ARGV.shift || 'movies.csv')
+
+movie3d = Movie3D.new('glee', 5, 20)
+playlist1.add_movie(movie3d)
+
 # playlist1.play(3)
 # playlist1.print_stats
 loop do
