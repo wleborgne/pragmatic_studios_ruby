@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
-require_relative './player.rb'
-require_relative './game_turn.rb'
+require_relative './player'
+require_relative './clumsy_player'
+require_relative './berserk_player'
+require_relative './game_turn'
 require_relative './treasure_trove'
 
 # Implement Game class
