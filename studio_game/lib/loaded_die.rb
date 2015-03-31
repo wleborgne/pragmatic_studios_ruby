@@ -1,15 +1,14 @@
 require_relative './auditable'
-# Implements a die for game
-class Die
+
+# Implement a loaded die
+class LoadedDie
   include Auditable
   attr_reader :number
 
-  def initialize
-    roll
-  end
+  NUMBERS = [1, 1, 2, 5, 6, 6]
 
   def roll
-    @number = rand(1..6)
+    @number = NUMBERS.sample
     audit
     @number
   end

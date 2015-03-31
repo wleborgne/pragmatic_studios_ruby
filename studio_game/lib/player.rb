@@ -5,8 +5,7 @@ require_relative './treasure_trove'
 # Implement Player class
 class Player
   include Playable
-  attr_reader :health
-  attr_accessor :name
+  attr_accessor :name, :health
 
   def initialize(name, health = 100)
     @name = name.capitalize
