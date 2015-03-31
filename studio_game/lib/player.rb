@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
+require File.expand_path(File.dirname(__FILE__) + '/playable.rb')
 require_relative './treasure_trove'
 
 # Implement Player class
 class Player
+  include Playable
   attr_reader :health
   attr_accessor :name
 
@@ -49,20 +51,6 @@ class Player
 
   def score
     @health + points
-  end
-
-  def strong?
-    @health > 100
-  end
-
-  def blam
-    @health -= 10
-    puts "#{@name} got blammed!"
-  end
-
-  def w00t
-    @health += 15
-    puts "#{@name} got w00ted!"
   end
 end
 
