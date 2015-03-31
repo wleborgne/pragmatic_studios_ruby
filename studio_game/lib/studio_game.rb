@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require_relative './game.rb'
+require_relative './game'
 
 # player1 = Player.new('moe')
 # player2 = Player.new('larry', 60)
@@ -7,6 +7,10 @@ require_relative './game.rb'
 
 knuckleheads = Game.new('Knuckleheads')
 knuckleheads.load_players(ARGV.shift || 'players.csv')
+klutz = ClumsyPlayer.new('klutz', 105)
+knuckleheads.add_player(klutz)
+berserker = ClumsyPlayer.new('berserker', 50)
+knuckleheads.add_player(berserker)
 # knuckleheads.add_player(player1)
 # knuckleheads.add_player(player2)
 # knuckleheads.add_player(player3)
