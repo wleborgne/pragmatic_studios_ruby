@@ -1,15 +1,12 @@
+require File.expand_path(File.dirname(__FILE__) + '/rankable.rb')
 class Movie
-  attr_reader :rank
-  attr_accessor :title
+  include Rankable
+  attr_accessor :title, :rank
 
   def initialize(title, rank = 0)
     @title = title.capitalize
     @rank = rank
     @snack_carbs = Hash.new(0)
-  end
-
-  def <=>(other)
-    other.rank <=> @rank
   end
 
   def to_s
@@ -39,25 +36,5 @@ class Movie
 
   def carbs_consumed
     @snack_carbs.values.reduce(0, :+)
-  end
-
-  def normalized_rank
-    @rank / 10
-  end
-
-  def thumbs_up
-    @rank += 1
-  end
-
-  def thumbs_down
-    @rank -= 1
-  end
-
-  def hit?
-    @rank >= 10
-  end
-
-  def status
-    hit? ? 'Hit' : 'Flop'
   end
 end

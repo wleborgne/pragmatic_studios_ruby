@@ -15,10 +15,12 @@ class Movie3D < Movie
   end
 end
 
-movie3d = Movie3D.new('glee', 5, 10)
-puts movie3d.title
-puts movie3d.rank
+if __FILE__ == $PROGRAM_NAME
+  movie3d = Movie3D.new('glee', 5, 10)
+  puts movie3d.title
+  puts movie3d.rank
 
-movie3d.thumbs_up
-movie3d.show_effect
-puts movie3d
+  movie3d.thumbs_up
+  movie3d.show_effect
+  puts movie3d
+end
